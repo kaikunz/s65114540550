@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button.swal2-confirm {
+    background-color: black;
+    font-weight: 700;
+    border-radius: 8px;
+}
+
+button.swal2-deny {
+    background-color: #DF2727;
+    font-weight: 700;
+    border-radius: 8px;
+}
+button.swal2-cancel {
+    background-color: black;
+    font-weight: 700;
+    border-radius: 8px;
+}

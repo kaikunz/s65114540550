@@ -1,0 +1,90 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/chickeam 
+      - /chickeam/node_modules
+    environment:
+      NODE_ENV: "production"
+      DATABASE_URL: "postgresql://postgres:password@db:5932/mydatabase"
+      AUTH_SECRET: "my_ultra_secure_nextauth_secret"
+      NEXT_PUBLIC_API_URL: "http://202.28.49.122:3000"
+      NEXTAUTH_URL: "http://202.28.49.122:3000"
+      AUTH_TRUST_HOST: true
+      JWT_SECRET: kinmha112
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
+      PGPORT: 5932
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5932:5932"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data:
+
+
+
+# mysql
+
+# services:
+#   app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - .:/chickeam 
+#       - /chickeam/node_modules
+#     environment:
+#       NODE_ENV: development
+#       DATABASE_URL: mysql://chickeam:1234@db:3306/mydatabase
+#     depends_on:
+#       db:
+#         condition: service_healthy
+        
+
+#   db:
+#     image: mysql:8.0
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: kinmha112
+#       MYSQL_DATABASE: mydatabase
+#       MYSQL_USER: chickeam
+#       MYSQL_PASSWORD: 1234
+#       MYSQL_TCP_PORT: 3306
+#     volumes:
+#       - db_data:/var/lib/mysql
+#       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+#     ports:
+#       - "3306:3306"
+#     healthcheck:
+#       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-pkinmha112"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 10
+
+
+# volumes:
+#   db_data:
+

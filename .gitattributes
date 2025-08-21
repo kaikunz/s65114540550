@@ -1,0 +1,2 @@
+docker-entrypoint.sh text eol=lf
+prisma/migrations/20250814153902_init/migration.sql text eol=lf

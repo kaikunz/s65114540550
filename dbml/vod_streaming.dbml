@@ -1,0 +1,241 @@
+//// ------------------------------------------------------
+//// THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+//// ------------------------------------------------------
+
+Project "VOD Streaming" {
+  database_type: 'PostgreSQL'
+  Note: 'ERDiagram VOD Streaming'
+}
+
+Table users {
+  id String [pk]
+  name String [not null]
+  email String [unique]
+  password String
+  emailVerified DateTime
+  image String
+  nickname String
+  follower Int
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  accounts accounts [not null]
+  sessions sessions [not null]
+  video videos [not null]
+  comment comments [not null]
+  post Posts [not null]
+  love_log Love_log [not null]
+  view_log View_log [not null]
+  followers Followers [not null]
+  following Followers [not null]
+  purchase Purchase [not null]
+  report Report [not null]
+}
+
+Table videos {
+  id String [pk]
+  title String
+  description String
+  thumbnail String
+  type Int
+  price_rent Float
+  price_sell Float
+  Love_count Int
+  slug String [unique]
+  path String [unique]
+  view_count Int [default: 0]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  OwnerUserID String [not null]
+  user users [not null]
+  comment comments [not null]
+  post Posts [not null]
+  love_log Love_log [not null]
+  view_log View_log [not null]
+  purchase Purchase [not null]
+  report Report [not null]
+}
+
+Table comments {
+  id String [pk]
+  comment String
+  userId String [not null]
+  videoId String
+  postId String
+  type Int
+  Love_count Int
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  love_log Love_log [not null]
+  report Report [not null]
+  user users [not null]
+  video videos
+  post Posts
+}
+
+Table Posts {
+  id String [pk]
+  content String
+  userId String [not null]
+  videoId String
+  Love_count Int
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  love_log Love_log [not null]
+  comment comments [not null]
+  report Report [not null]
+  user users [not null]
+  video videos
+}
+
+Table Love_log {
+  id String [pk]
+  userId String [not null]
+  videoId String
+  postId String
+  commentId String
+  type Int
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user users [not null]
+  video videos
+  post Posts
+  comment comments
+}
+
+Table Report {
+  id String [pk]
+  userId String [not null]
+  videoId String
+  postId String
+  commentId String
+  type Int
+  reason String [not null]
+  text String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user users [not null]
+  video videos
+  post Posts
+  comment comments
+}
+
+Table View_log {
+  id String [pk]
+  userId String [not null]
+  videoId String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user users [not null]
+  video videos [not null]
+}
+
+Table Purchase {
+  id String [pk]
+  userId String [not null]
+  videoId String [not null]
+  type Int [not null]
+  expire_date DateTime
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user users [not null]
+  video videos [not null]
+}
+
+Table Followers {
+  id String [pk]
+  userId String [not null]
+  followerUserId String [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user users [not null]
+  follower users [not null]
+}
+
+Table accounts {
+  id String [pk]
+  userId String [not null]
+  type String
+  provider String [not null]
+  providerAccountId String [not null]
+  token_type String
+  refresh_token String
+  access_token String
+  expires_at Int
+  scope String
+  id_token String
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+  user users [not null]
+
+  indexes {
+    (provider, providerAccountId) [unique]
+  }
+}
+
+Table sessions {
+  id String [pk]
+  userId String
+  sessionToken String [unique, not null]
+  accessToken String
+  expires DateTime [not null]
+  user users
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+}
+
+Table VerificationRequest {
+  id String [pk]
+  identifier String [not null]
+  token String [unique, not null]
+  expires DateTime [not null]
+  createdAt DateTime [default: `now()`, not null]
+  updatedAt DateTime [not null]
+
+  indexes {
+    (identifier, token) [unique]
+  }
+}
+
+Ref: videos.OwnerUserID > users.id [delete: Cascade]
+
+Ref: comments.userId > users.id [delete: Cascade]
+
+Ref: comments.videoId > videos.id [delete: Set Null]
+
+Ref: comments.postId > Posts.id [delete: Set Null]
+
+Ref: Posts.userId > users.id [delete: Cascade]
+
+Ref: Posts.videoId > videos.id [delete: Set Null]
+
+Ref: Love_log.userId > users.id [delete: Cascade]
+
+Ref: Love_log.videoId > videos.id [delete: Set Null]
+
+Ref: Love_log.postId > Posts.id [delete: Set Null]
+
+Ref: Love_log.commentId > comments.id [delete: Set Null]
+
+Ref: Report.userId > users.id [delete: Cascade]
+
+Ref: Report.videoId > videos.id [delete: Set Null]
+
+Ref: Report.postId > Posts.id [delete: Set Null]
+
+Ref: Report.commentId > comments.id [delete: Set Null]
+
+Ref: View_log.userId > users.id [delete: Cascade]
+
+Ref: View_log.videoId > videos.id [delete: Cascade]
+
+Ref: Purchase.userId > users.id [delete: Cascade]
+
+Ref: Purchase.videoId > videos.id [delete: Cascade]
+
+Ref: Followers.userId > users.id [delete: Cascade]
+
+Ref: Followers.followerUserId > users.id [delete: Cascade]
+
+Ref: accounts.userId > users.id [delete: Cascade]
+
+Ref: sessions.userId > users.id [delete: Cascade]
