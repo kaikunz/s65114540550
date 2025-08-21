@@ -28,7 +28,7 @@ jwp.setup({
     height: "100%",
     key: "cLGMn8T20tGvW+0eXPhq4NNmLB57TrscPjd1IyJF84o=",
     playlist: [{
-        file: "http://localhost:5000/watch/<?php echo $_GET['key'] ?>",
+        file: "<?php $videoUrl = urldecode($_GET['key']); if (preg_match('#^http:/[^/]#', $videoUrl)) { $videoUrl = preg_replace('#^http:/#', 'http://', $videoUrl); } echo $videoUrl ?>",
         type: "hls", 
         label: "HLS"
     }],

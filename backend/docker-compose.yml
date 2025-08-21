@@ -3,11 +3,9 @@ services:
     image: alfg/nginx-rtmp
     container_name: nginx-rtmp
     ports:
-      - "8080:80"
-      - "4000:4000"
-      - "1935:1935"
-      - "80:80"
-      - "5000:5000"
+      - "40550:40550"
+      - "50550:50550"
+      - "60550:60550"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf.template
       - ./wwwroot:/var/www/html
@@ -29,7 +27,7 @@ services:
     container_name: redis
     restart: always
     ports:
-      - "6379:6379"
+      - "30550:30550"
 
   ffmpeg:
     image: jrottenberg/ffmpeg:4.3-alpine

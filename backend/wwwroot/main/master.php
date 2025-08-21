@@ -1,6 +1,6 @@
 <?php
 
-    header('Access-Control-Allow-Origin: *');
+    //header('Access-Control-Allow-Origin: *');
 
     
     header("X-Robots-Tag: noindex,nofollow,noarchive,nosnippet,noydir,noodp");

@@ -28,7 +28,7 @@
                 height: "100%",
                 key: "cLGMn8T20tGvW+0eXPhq4NNmLB57TrscPjd1IyJF84o=",
                 playlist: [{
-                    file: "http://localhost:4000/streaming/<?php echo $_GET['key'] ?>.m3u8",
+                    file: "<?php $videoUrl = urldecode($_GET['key']); if (preg_match('#^http:/[^/]#', $videoUrl)) { $videoUrl = preg_replace('#^http:/#', 'http://', $videoUrl); } echo $videoUrl ?>.m3u8",
                     type: "hls", 
                     label: "HLS"
                 }],
