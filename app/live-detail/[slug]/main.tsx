@@ -19,7 +19,7 @@ interface DetailProps {
 }
 
 
-const socket = io("http://localhost:3000", { path: "/connectwebsocket" });
+const socket = io(process.env.NEXT_PUBLIC_API_URL, { path: "/connectwebsocket" });
 
 export default function LiveDetail({ user, slug }: DetailProps) {
   type Live = {
@@ -60,7 +60,7 @@ export default function LiveDetail({ user, slug }: DetailProps) {
 
     if (data) {
       //const html = `http://live.chickeam.com/stream/${data.path}/index.m3u8`;
-      const html = `http://localhost:4000/streaming/${data.path}.m3u8`;
+      const html = `${process.env.NEXT_PUBLIC_PHP_HOST}/streaming/${data.path}.m3u8`;
       
       try {
         const check = await axios.get(html, { validateStatus: () => true });
@@ -75,7 +75,7 @@ export default function LiveDetail({ user, slug }: DetailProps) {
 
         const htmlforvideo = `
           <div class="flex justify-center">
-          <iframe width="1280" height="720" src="http://localhost:4000/play/${data.path}"></iframe>
+          <iframe width="1280" height="720" src="${process.env.NEXT_PUBLIC_PHP_HOST}/play/${html}"></iframe>
         </div>
         
         `;
@@ -101,7 +101,7 @@ export default function LiveDetail({ user, slug }: DetailProps) {
     
     if (data) {
       //const html = `http://live.chickeam.com/stream/${data.path}/index.m3u8`;
-      const html = `http://localhost:4000/streaming/${data.path}.m3u8`;
+      const html = `${process.env.NEXT_PUBLIC_PHP_HOST}/streaming/${data.path}.m3u8`;
       
 
       try {

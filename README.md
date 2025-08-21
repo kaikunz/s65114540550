@@ -3,7 +3,18 @@
 สิ่งที่จำเป็นสำหรับการรัน (Requirement)
 - Docker
 
-  
+## Port ที่ต้องใช้
+```
+nextjs
+10550 (3000) - port app
+20550 (5432) - port PostgreSQL
+
+php nginx
+30550 (6379) - port redis
+40550 (1953) - port rtmp_nginx
+50550 (80) - port PHP hls streaming host
+60550 (5000) - port player host
+```
 
 ## STEP 1 
 - หลังจาก Clone เสร็จสามารถพิมพ์คำสั่ง Docker ในส่วน Frontend เพื่อรันได้เลย

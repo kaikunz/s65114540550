@@ -80,7 +80,7 @@ const UploadForm = () => {
     if (upscale) formData.append("upscale", String(upscale));
 
     try {
-      const res = await axios.post("http://localhost:5000/upload", formData, {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_PHP_HOST}/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

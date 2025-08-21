@@ -329,18 +329,15 @@ export default function WatchVideos({ user, video }: PostDetailProps) {
   useEffect(() => {
     if (!hasFetchedInitialData.current) {
         fetchComment();
-      hasFetchedInitialData.current = true; // ป้องกันการดึงข้อมูลซ้ำ
+      hasFetchedInitialData.current = true;
     }
   }, []);
-    
   
-  const url = `https://chickeam.com/play?test=https://chickeam.com/temp/${videoPath}/playlist.m3u8`;
-  const url2 = `http://localhost:5000/play/${video?.key}`;
-  const url3 = `http://localhost:4000/play/${video?.path}`;
-  //const url3 = `http://live.chickeam.com/play/${datav?.path}`;
-  //const url2 = `https://chickeam.com/play?test=https://chickeam.com/temp/${datavPath}`;
+  const realpath = encodeURIComponent(`${process.env.NEXT_PUBLIC_PHP_HOST}/watch/${video?.key}`);
+  const realpath2 = encodeURIComponent(`${process.env.NEXT_PUBLIC_PHP_HOST}/streaming/${video?.path}.m3u8`);
+  const url2 = `${process.env.NEXT_PUBLIC_PHP_HOST}/play/${realpath}`; //regular video
+  const url3 = `${process.env.NEXT_PUBLIC_PHP_HOST}/play/${realpath2}`; //streaming
   
- 
 
   return (
     <>
