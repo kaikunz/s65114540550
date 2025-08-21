@@ -5,11 +5,11 @@
 
 ## Port ที่ต้องใช้
 ```
-nextjs
+NEXTJS
 10550 (3000) - port app
 20550 (5432) - port PostgreSQL
 
-php nginx
+NGINX PHP Redis (Backend) (ถ้าไม่รันส่วน Nginx Reverse Proxy ให้ข้ามส่วน Backend เลยนะครับ)
 30550 (6379) - port redis
 40550 (1953) - port rtmp_nginx
 50550 (80) - port PHP hls streaming host
