@@ -83,8 +83,8 @@ app.prepare().then(() => {
         });
     });
 
-    server.listen(3000, (err) => {
+    server.listen(10550, (err) => {
         if (err) throw err;
-        console.log("> WebSocket Server Ready on http://202.28.49.122:3000/connectwebsocket");
+        console.log("> WebSocket Server Ready on http://locahost:10550/connectwebsocket");
     });
 });
