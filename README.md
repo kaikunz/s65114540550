@@ -31,5 +31,5 @@ docker compose up -d --build
 
 ## พร้อม
 ```
-http://localhost:3000
+http://localhost:10550
 ```
