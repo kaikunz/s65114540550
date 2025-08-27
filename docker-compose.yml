@@ -8,43 +8,37 @@ services:
     volumes:
       - .:/chickeam 
       - /chickeam/node_modules
-    environment:
-      NODE_ENV: "production"
-      DATABASE_URL: "postgresql://chickeam:112112112@db:20550/chickeam"
-      AUTH_SECRET: "my_ultra_secure_nextauth_secret"
-      NEXT_PUBLIC_API_URL: "http://localhost:10550"
-      NEXTAUTH_URL: "http://localhost:10550"
-      NEXT_PUBLIC_PHP_HOST: "http://localhost:60550"
-      AUTH_TRUST_HOST: true
-      JWT_SECRET: kinmha112
-      PORT: 10550
-
+    env_file:
+      - .env
     depends_on:
       db:
         condition: service_healthy
+    networks:
+      - frontend
 
   db:
     image: postgres:15
     restart: always
-    environment:
-      POSTGRES_USER: chickeam
-      POSTGRES_PASSWORD: 112112112
-      POSTGRES_DB: chickeam
-      PGPORT: 20550
+    env_file:
+      - .env
     volumes:
       - db_data:/var/lib/postgresql/data
-    ports:
-      - "20550:20550"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U chickeam"]
       interval: 5s
       timeout: 5s
       retries: 5
+    expose:
+      - "20550"
+    networks:
+      - frontend
 
 volumes:
   db_data:
 
-
+networks:
+  frontend:
+    driver: bridge
 
 # mysql
 
