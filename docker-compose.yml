@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "10550:10550"
+      - "${PORT}:${PORT}"
     volumes:
       - .:/chickeam 
       - /chickeam/node_modules
