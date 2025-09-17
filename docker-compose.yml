@@ -21,8 +21,7 @@ services:
       - "traefik.http.routers.worawut550.rule=PathPrefix(`/worawut550`)"
       - "traefik.http.services.worawut550.loadbalancer.server.port=10550"
       - "traefik.docker.network=traefik-public"
-      - "traefik.http.middlewares.worawut550-strip.stripprefix.prefixes=/worawut550"
-      - "traefik.http.routers.worawut550.middlewares=worawut550-strip"
+      
 
   db:
     image: postgres:15
