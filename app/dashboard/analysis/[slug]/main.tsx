@@ -37,7 +37,7 @@ export default function Main({ user, slug }: DetailProps) {
     const [video, setVideo] = useState<Video | null>(null);
     const FetchVideoDetail = async () => {
         try {
-          const response = await axios.post("/api/getmyvideodetail", { id: slug });
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/getmyvideodetail`, { id: slug });
           setVideo(response.data.video);
           setCommentCount(response.data.comment);
 

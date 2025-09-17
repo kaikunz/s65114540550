@@ -93,7 +93,7 @@ export default function WatchVideos({ user, video }: PostDetailProps) {
     const toggleFollow = async () => {
       try {
         
-        const followcheck = await axios.post("/api/follow", { followuserId: video.OwnerUserID});
+        const followcheck = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/follow`, { followuserId: video.OwnerUserID});
         const result = followcheck.data;
         
         if (result.followed) {
@@ -116,7 +116,7 @@ export default function WatchVideos({ user, video }: PostDetailProps) {
             "Id": video.id,
             "method": 2
         }
-        const response = await axios.post("/api/sendcomment", posts);
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/sendcomment`, posts);
         const newPost = {
             ...response.data.posts,
             user: {
@@ -137,7 +137,7 @@ export default function WatchVideos({ user, video }: PostDetailProps) {
 
     const handleSendReport = async () => {
       try {
-        const response = await axios.post("/api/sendreport", { id: video.id,reason: reason });
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/sendreport`, { id: video.id,reason: reason });
      
         setIsOpen(false)
 
@@ -157,7 +157,7 @@ export default function WatchVideos({ user, video }: PostDetailProps) {
 
     const handleLoveClick = async () => {
       try {
-        const response = await axios.post("/api/addlove", { id: video.id,method: 4 });
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/addlove`, { id: video.id,method: 4 });
         const { type } = response.data;
      
     
@@ -173,7 +173,7 @@ export default function WatchVideos({ user, video }: PostDetailProps) {
 
     const LoveClick = async (postId: string) => {
       try {
-        const response = await axios.post("/api/addlove", { id: postId, method:3 });
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/addlove`, { id: postId, method:3 });
         const { type, post } = response.data;
     
         setComment((prevPosts) =>
@@ -217,7 +217,7 @@ export default function WatchVideos({ user, video }: PostDetailProps) {
     
         if (result.isConfirmed) {
           try {
-            const response = await fetch(`/api/${action}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/${action}`, {
               next: { revalidate: 0 },
               method: "POST",
               headers: {
@@ -296,7 +296,7 @@ export default function WatchVideos({ user, video }: PostDetailProps) {
       setLoading(true);
 
       try {
-          const response = await axios.post<ApiResponse>("/api/getcomments", { page:page, Id:video.id, method:2 });
+          const response = await axios.post<ApiResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/getcomments`, { page:page, Id:video.id, method:2 });
           const result = response.data;
 
           setComment((prev) => [...prev, ...result.comment]);

@@ -43,7 +43,7 @@ export default function LiveDetail({ user, slug }: DetailProps) {
     try {
 
 
-      const res2 = await axios.post("/api/getvideo", { slug: slug, edit:1 });
+      const res2 = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/getvideo`, { slug: slug, edit:1 });
 
       if (res2.status === 200) {
         const result = await res2.data;
@@ -118,7 +118,7 @@ export default function LiveDetail({ user, slug }: DetailProps) {
         });
 
 
-          const res2 = await axios.post("/api/livestart", { slug: slug, });
+          const res2 = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/livestart`, { slug: slug, });
 
           if (res2.status === 200) {
             router.push(`/watch/${slug}`)

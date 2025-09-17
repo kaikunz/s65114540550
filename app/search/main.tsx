@@ -71,7 +71,7 @@ export default function SearchVideo({ user }: DetailProps) {
     setLoading(true);
 
     try {
-      const res = await axios.post("/api/searchvideos", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/searchvideos`, {
         query,
         page: currentPage,
         pageSize: 5,

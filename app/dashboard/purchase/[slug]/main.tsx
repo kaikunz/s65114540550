@@ -62,7 +62,7 @@ export default function Main({ user, slug }: DetailProps) {
         setLoading(true);
 
         try {
-            const response = await axios.post<ApiResponse>("/api/getmypurchase", { page, slug:slug });
+            const response = await axios.post<ApiResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/getmypurchase`, { page, slug:slug });
             const result = response.data;
 
             setpurchase((prev) => [...prev, ...result.purchase]);

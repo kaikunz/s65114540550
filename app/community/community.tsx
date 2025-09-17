@@ -15,7 +15,7 @@ export default function Communitys({ user }: { user: any }) {
         const posts = {
             "text": text
         }
-        const response = await axios.post("/api/sendpost", posts);
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/sendpost`, posts);
         const newPost = {
             ...response.data.posts,
             user: {
@@ -36,7 +36,7 @@ export default function Communitys({ user }: { user: any }) {
 
     const LoveClick = async (postId: string) => {
         try {
-          const response = await axios.post("/api/addlove", { id: postId, method:1 });
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/addlove`, { id: postId, method:1 });
           const { type, post } = response.data;
       
           setPosts((prevPosts) =>
@@ -102,7 +102,7 @@ export default function Communitys({ user }: { user: any }) {
         setLoading(true);
 
         try {
-            const response = await axios.post<ApiResponse>("/api/getposts", { page });
+            const response = await axios.post<ApiResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/getposts`, { page });
             const result = response.data;
 
             setPosts((prev) => [...prev, ...result.posts]);

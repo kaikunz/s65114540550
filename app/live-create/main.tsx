@@ -49,7 +49,7 @@ export default function LiveCreate({ user }: DetailProps) {
     formDatas.append("description", description || "");
   
     try {
-      const res = await axios.post("/api/create-live", formDatas, {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/create-live`, formDatas, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

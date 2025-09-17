@@ -53,7 +53,7 @@ export default function VideoMain({ user }: { user: any }) {
         setLoading(true);
 
         try {
-            const response = await axios.post<ApiResponse>("/api/getvideos", { page });
+            const response = await axios.post<ApiResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/getvideos`, { page });
             const result = response.data;
 
             setVideos((prev) => [...prev, ...result.video]);

@@ -12,7 +12,7 @@ export default function Main({ user }: { user: any }) {
 
     const FetchAdminDetail = async () => {
         try {
-          const response = await axios.post("/api/admin/");
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/`);
           setusercount(response.data.usercount);
           setreportcount(response.data.reportCount);
 

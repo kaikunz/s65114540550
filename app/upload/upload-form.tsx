@@ -107,7 +107,7 @@ const UploadForm = () => {
           path: path,
         };
 
-        const res2 = await axios.post("/api/addvideo", videoData, {
+        const res2 = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/addvideo`, videoData, {
           headers: {
             "Content-Type": "application/json",
           },
@@ -159,7 +159,7 @@ const UploadForm = () => {
 
 
     try {
-      const res = await axios.post("/api/updatevideo", formDatas, {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/updatevideo`, formDatas, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

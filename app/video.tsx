@@ -9,7 +9,7 @@ export const Fetchvideo = () => {
     const [videos, setVideos] = useState([]);
 
     useEffect(() => {
-        fetch('/api/video')
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/video`)
           .then((response) => response.json())
           .then((data) => setVideos(data))
           .catch((error) => console.error('Error fetching videos:', error));

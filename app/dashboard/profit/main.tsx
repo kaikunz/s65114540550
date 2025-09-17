@@ -49,7 +49,7 @@ export default function Main({ user }: { user: any }) {
         setLoading(true);
 
         try {
-            const response = await axios.post<ApiResponse>("/api/getmyprofit", { page });
+            const response = await axios.post<ApiResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/getmyprofit`, { page });
             const result = response.data;
 
             setProfit((prev) => [...prev, ...result.videos]);

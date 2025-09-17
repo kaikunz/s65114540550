@@ -48,7 +48,7 @@ export default function Main({ user, slug }: DetailProps) {
   useEffect(() => {
     const fetchVideoData = async () => {
       try {
-        const res = await axios.post("/api/getvideobyid", { videoId:slug });
+        const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/getvideobyid`, { videoId:slug });
         setVideo(res.data);
         setTitle(res.data.title);
         setDescription(res.data.description);
@@ -78,7 +78,7 @@ export default function Main({ user, slug }: DetailProps) {
       if (Price2 !== null) formData.append("price_sell", Price2.toString());
       if (thumbnail) formData.append("thumbnail", thumbnail);
   
-      await axios.post("/api/editvideo", formData, {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/editvideo`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
   

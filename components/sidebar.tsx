@@ -330,7 +330,7 @@ export default function Sidebar({ user }: { user: any }) {
                         </Link>
                       </MenuItem>
                     ))}
-                     <form action="/api/logout" method="POST" className='flex'>
+                     <form action=`/api/logout" method="POST" className='flex'>
                         <button className="block px-3 py-1 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden">ออกจากระบบ</button>
                     </form>
                   </MenuItems>

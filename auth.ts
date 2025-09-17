@@ -62,7 +62,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       );
 
       if (isProtected && !isLoggedIn) {
-        const redirectUrl = new URL('/api/auth/signin', nextUrl.origin);
+        const redirectUrl = new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/signin`, nextUrl.origin);
         redirectUrl.searchParams.append('callbackUrl', nextUrl.href);
         return Response.redirect(redirectUrl);
       }

@@ -62,7 +62,7 @@ export default function HistoryPage({ user }: DetailProps) {
     setLoading(true);
 
     try {
-      const res = await axios.post("/api/getpurchasehistory", {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/getpurchasehistory`, {
         pageBuy: pageBuy,
         pageRent: pageRent,
         pageSize: 5,

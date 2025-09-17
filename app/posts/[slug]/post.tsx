@@ -48,7 +48,7 @@ export default function PostDetail({ user, post }: PostDetailProps) {
             "Id": post.id,
             "method": 1
         }
-        const response = await axios.post("/api/sendcomment", posts);
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/sendcomment`, posts);
         const newPost = {
             ...response.data.posts,
             user: {
@@ -66,7 +66,7 @@ export default function PostDetail({ user, post }: PostDetailProps) {
 
     const LoveClick = async (postId: string) => {
         try {
-          const response = await axios.post("/api/addlove", { id: postId, method:1 });
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/addlove`, { id: postId, method:1 });
           const { type, post: updatedPost } = response.data;
       
           setCurrentPost((prevPost) =>
@@ -87,7 +87,7 @@ export default function PostDetail({ user, post }: PostDetailProps) {
 
       const LoveClick2 = async (postId: string) => {
         try {
-          const response = await axios.post("/api/addlove", { id: postId, method:2 });
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/addlove`, { id: postId, method:2 });
           const { type, post } = response.data;
       
           setComment((prevPosts) =>
@@ -144,7 +144,7 @@ export default function PostDetail({ user, post }: PostDetailProps) {
         setLoading(true);
 
         try {
-            const response = await axios.post<ApiResponse>("/api/getcomments", { page:page, Id:post.id, method:1 });
+            const response = await axios.post<ApiResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/getcomments`, { page:page, Id:post.id, method:1 });
             const result = response.data;
 
             setComment((prev) => [...prev, ...result.comment]);

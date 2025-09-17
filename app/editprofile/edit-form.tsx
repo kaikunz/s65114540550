@@ -20,7 +20,7 @@ export default function EditProfileForm({ user }: { user: any }) {
     }
 
     try {
-      const response = await axios.post("/api/updateprofile", formData);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/updateprofile`, formData);
       if (response.status === 200) {
         toast.success("อัปเดตข้อมูลโปรไฟล์สำเร็จ");
       } else {

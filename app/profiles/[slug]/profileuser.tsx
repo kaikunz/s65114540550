@@ -77,7 +77,7 @@ export default function ProfileUser({ user, profile }: PostDetailProps) {
     const toggleFollow = async () => {
       try {
         
-        const followcheck = await axios.post("/api/follow", { followuserId: profile.user.id});
+        const followcheck = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/follow`, { followuserId: profile.user.id});
         const result = followcheck.data;
 
         if (result.followed) {
@@ -99,7 +99,7 @@ export default function ProfileUser({ user, profile }: PostDetailProps) {
       setLoading(true);
 
       try {
-          const response = await axios.post<ApiResponse>("/api/getvideobyuserid", { page, userId: profile.user.id });
+          const response = await axios.post<ApiResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/getvideobyuserid`, { page, userId: profile.user.id });
           const result = response.data;
 
           setVideos((prev) => [...prev, ...result.video]);

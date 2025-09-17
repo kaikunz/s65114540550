@@ -62,7 +62,7 @@ export default function Main({ user }: DetailProps) {
         setLoading(true);
 
         try {
-            const response = await axios.post<ApiResponse>("/api/admin/getreport", {page});
+            const response = await axios.post<ApiResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/getreport`, {page});
             const result = response.data;
 
             setUsers((prev) => [...prev, ...result.users]);
@@ -117,7 +117,7 @@ export default function Main({ user }: DetailProps) {
                 
                     if (result.isConfirmed) {
                       try {
-                        const response = await fetch(`/api/admin/delete`, {
+                        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/delete`, {
                           next: { revalidate: 0 },
                           method: "DELETE",
                           headers: {

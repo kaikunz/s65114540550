@@ -50,7 +50,7 @@ export default function Main({ user }: { user: any }) {
         setLoading(true);
 
         try {
-            const response = await axios.post<ApiResponse>("/api/getmyvideos", { page });
+            const response = await axios.post<ApiResponse>(`${process.env.NEXT_PUBLIC_API_URL}/api/getmyvideos`, { page });
             const result = response.data;
             
 
@@ -105,7 +105,7 @@ export default function Main({ user }: { user: any }) {
                       
                           if (result.isConfirmed) {
                             try {
-                              const response = await fetch(`/api/delete`, {
+                              const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/delete`, {
                                 next: { revalidate: 0 },
                                 method: "DELETE",
                                 headers: {
