@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/worawut550',
   images: {
     remotePatterns: [
       {
