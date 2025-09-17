@@ -194,7 +194,7 @@ export default function Sidebar({ user }: { user: any }) {
                       const isActive = pathname === item.href;
                       return (
                       <li key={item.name}>
-                        <a
+                        <Link
                           href={item.href}
                           className={classNames(
                             isActive
@@ -211,7 +211,7 @@ export default function Sidebar({ user }: { user: any }) {
                             )}
                           />
                           <span className='mt-1 mx-auto text-center'>{item.name}</span>
-                        </a>
+                        </Link>
                       </li>
                     );
                   })}
