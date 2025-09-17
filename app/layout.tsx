@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={Noto.className}>
       <NextTopLoader color="#F50F2B" showSpinner={false}/>
-        <SessionProvider basePath="/worawut550"><Base>{children}</Base></SessionProvider>
+        <SessionProvider baseUrl={process.env.NEXTAUTH_URL} basePath="/worawut550"><Base>{children}</Base></SessionProvider>
         <Toaster />
       </body>
     </html>
