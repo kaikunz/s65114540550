@@ -9,6 +9,7 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: 'jwt' },
+  basePath: '/worawut550',
   adapter: PrismaAdapter(prisma),
   pages: {
     signIn: '/login',
